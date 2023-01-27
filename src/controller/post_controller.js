@@ -14,6 +14,14 @@ module.exports.createPost = async (req, res) => {
         console.log(error);
         return res.json({ success: false, message: "Error Detected" });
     }
-} 
+}
 
-
+module.exports.getAllPosts = async (req, res) => {
+    try {
+        let posts = await Post.find();
+        return res.json({ success: true, data: posts });
+    } catch (error) {
+        console.log(error);
+        return res.json({ success: false, message: "Error Detected" });
+    }
+}

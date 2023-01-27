@@ -31,9 +31,19 @@ module.exports.signIn = async (req, res) => {
             return res.json({ success: false, message: "Incorrect Password" });
         }
         console.log(`successfully logged in :${user.username}`);
-        return res.json({ success: true, message: "successfully logged in" }); 
+        return res.json({ success: true, message: "successfully logged in" });
     } catch (error) {
         console.log(error);
-        return res.json({ success: false, message: "Error Detected" }); 
+        return res.json({ success: false, message: "Error Detected" });
+    }
+}
+
+module.exports.getAllUsers = async (req, res) => {
+    try {
+        let users = await User.find(); 
+        return res.json({ success: true, data: users }); 
+    } catch (error) {
+        console.log(error);
+        return res.json({ success: false, message: "Error Detected" });
     }
 }
